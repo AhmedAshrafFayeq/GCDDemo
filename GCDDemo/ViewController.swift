@@ -12,7 +12,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        queueType()
+        //queueType()
+        queuesWithQoS()
     }
 
     func queueType(){
@@ -31,5 +32,20 @@ class ViewController: UIViewController {
         }
     }
 
+    func queuesWithQoS(){
+        let queue1 = DispatchQueue(label: "com.fayeq.userIntiated", qos: .userInitiated)
+        let queue2 = DispatchQueue(label: "com.fayeq.utility", qos: .utility)
+        
+        queue1.async {
+            for i in 1..<20{
+                print("😝", i)
+            }
+        }
+        queue2.async {
+            for i in 20..<40{
+                print("👀", i)
+            }
+        }
+    }
 }
 
